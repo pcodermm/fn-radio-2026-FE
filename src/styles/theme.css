@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap');
+
+:root {
+  --bg: #070707;
+  --bg-elevated: #101010;
+  --surface: rgba(16, 16, 16, 0.88);
+  --surface-strong: rgba(22, 22, 22, 0.96);
+  --surface-soft: rgba(255, 255, 255, 0.04);
+  --line: rgba(255, 255, 255, 0.1);
+  --line-strong: rgba(255, 255, 255, 0.16);
+  --text: #f5f1ed;
+  --muted: #b7aaa0;
+  --accent: #d71920;
+  --accent-strong: #ff5c5c;
+  --accent-soft: rgba(215, 25, 32, 0.14);
+  --focus: rgba(255, 92, 92, 0.24);
+  --success: #33c26e;
+  --shadow: 0 28px 80px rgba(0, 0, 0, 0.48);
+  --radius-xl: 30px;
+  --radius-lg: 22px;
+  --radius-md: 16px;
+  --radius-sm: 12px;
+}

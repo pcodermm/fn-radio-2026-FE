@@ -1,46 +1,75 @@
-# Getting Started with Create React App
+# FN Radio Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Create React App + TypeScript frontend integrated against the FN Radio backend contract in:
 
-## Available Scripts
+- [API_RESPONSE.md](../fn_radio_backend/API_RESPONSE.md)
+- [swagger.yaml](../fn_radio_backend/swagger.yaml)
 
-In the project directory, you can run:
+## What is implemented
 
-### `npm start`
+- Axios client with centralized envelope unwrapping and error normalization
+- Trusted-device auth flow for `register`, `login`, `me`, and `logout`
+- Persistent `fnr_token`, `fnr_user`, and `fnr_device_id` local storage handling
+- Typed API modules for auth, home, blogs, podcasts, categories, and settings
+- Routed pages for home, blogs, blog detail, podcasts, podcast detail, login, register, and profile
+- Query param support for `category`, `featured`, `search`, and `page`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Local setup
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. Install dependencies:
 
-### `npm test`
+```bash
+npm install
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Create a local environment file from the example:
 
-### `npm run build`
+```bash
+copy .env.example .env
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Confirm the backend is running and that `REACT_APP_API_BASE_URL` points to the real API URL.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Example Laragon value:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```env
+REACT_APP_API_BASE_URL=http://localhost/fn_radio_backend/public/api
+REACT_APP_APP_VERSION=1.0.0
+```
 
-### `npm run eject`
+4. Start the frontend:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+npm start
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The app runs at `http://localhost:3000`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Scripts
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- `npm start`: run the development server
+- `npm test`: run the CRA test runner
+- `npm run build`: create a production build
 
-## Learn More
+## Project structure
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```text
+src/
+  api/
+    client.ts
+    endpoints/
+  app/
+  components/
+  features/
+  lib/
+  pages/
+  styles/
+  types/
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Notes
+
+- Authenticated requests automatically send `Authorization`, `X-Device-Id`, `X-App-Platform`, and `X-App-Version`.
+- Register and login automatically send `device_id`, `device_name`, `platform=web`, and `app_version` in the request body.
+- Public content pages do not send trusted-device headers.
+- Settings are treated as a dynamic key/value map and rendered defensively.
