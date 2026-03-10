@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 import { blogsApi } from '../api/endpoints/blogs';
+import { CommentSection } from '../components/comment/CommentSection';
 import { ErrorState } from '../components/common/ErrorState';
 import { LoadingState } from '../components/common/LoadingState';
 import type { AppError } from '../lib/errors';
@@ -70,6 +71,7 @@ export function BlogDetailPage() {
           <p>{blog.excerpt || blog.meta_description || 'FN Radio story detail.'}</p>
           <div className="detail-meta">
             <span>{formatDate(blog.published_at)}</span>
+            <span>{blog.comments_count} comments</span>
             {blog.is_featured ? <span>Featured</span> : null}
           </div>
         </div>
@@ -84,6 +86,7 @@ export function BlogDetailPage() {
         className="rich-content"
         dangerouslySetInnerHTML={{ __html: blog.content_html }}
       />
+      <CommentSection commentsCount={blog.comments_count} slug={blog.slug} type="blog" />
     </article>
   );
 }

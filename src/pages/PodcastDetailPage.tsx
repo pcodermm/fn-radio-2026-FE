@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 import { podcastsApi } from '../api/endpoints/podcasts';
+import { CommentSection } from '../components/comment/CommentSection';
 import { ErrorState } from '../components/common/ErrorState';
 import { LoadingState } from '../components/common/LoadingState';
 import type { AppError } from '../lib/errors';
@@ -70,6 +71,7 @@ export function PodcastDetailPage() {
           <p>{podcast.description || 'Tune in to the latest FN Radio episode.'}</p>
           <div className="detail-meta">
             <span>{formatDate(podcast.published_at)}</span>
+            <span>{podcast.comments_count} comments</span>
             {podcast.is_featured ? <span>Featured</span> : null}
           </div>
           <a
@@ -106,6 +108,7 @@ export function PodcastDetailPage() {
           <p>{podcast.description || 'No episode summary was provided by the backend.'}</p>
         </div>
       </section>
+      <CommentSection commentsCount={podcast.comments_count} slug={podcast.slug} type="podcast" />
     </article>
   );
 }

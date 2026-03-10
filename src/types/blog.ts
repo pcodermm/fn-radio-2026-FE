@@ -17,6 +17,7 @@ export interface Blog {
   is_featured: boolean;
   is_published: boolean;
   published_at: string | null;
+  comments_count: number;
   meta_title: string | null;
   meta_description: string | null;
   category: BlogCategory;

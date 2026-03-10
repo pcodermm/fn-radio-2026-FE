@@ -18,5 +18,6 @@ export interface Podcast {
   is_featured: boolean;
   is_published: boolean;
   published_at: string | null;
+  comments_count: number;
   category: PodcastCategory;
 }

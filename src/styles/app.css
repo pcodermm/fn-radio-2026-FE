@@ -526,10 +526,10 @@ textarea {
 }
 
 .field-group input,
-.field-group select {
+.field-group select,
+.field-group textarea {
   width: 100%;
-  min-height: 52px;
-  padding: 0 14px;
+  padding: 14px;
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.04);
@@ -537,8 +537,20 @@ textarea {
   transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
 }
 
+.field-group input,
+.field-group select {
+  min-height: 52px;
+  padding-block: 0;
+}
+
+.field-group textarea {
+  min-height: 128px;
+  resize: vertical;
+}
+
 .field-group input:focus,
-.field-group select:focus {
+.field-group select:focus,
+.field-group textarea:focus {
   outline: none;
   border-color: var(--accent);
   box-shadow: 0 0 0 4px var(--focus);
@@ -692,6 +704,91 @@ textarea {
   padding: 0 0 24px;
 }
 
+.comment-section {
+  display: grid;
+  gap: 20px;
+}
+
+.comment-auth-card,
+.comment-composer,
+.comment-card {
+  position: relative;
+  z-index: 1;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.comment-auth-card,
+.comment-composer {
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+}
+
+.comment-auth-card h3,
+.comment-empty h3 {
+  margin: 10px 0;
+  font-family: 'Abril Fatface', serif;
+  font-size: 1.8rem;
+}
+
+.comment-auth-card p,
+.comment-empty p,
+.comment-card-header p,
+.comment-composer p,
+.comment-body {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.comment-auth-actions,
+.comment-composer-actions,
+.comment-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.comment-thread,
+.comment-children {
+  display: grid;
+  gap: 16px;
+}
+
+.comment-card {
+  padding: 20px;
+}
+
+.comment-card-reply {
+  margin-left: calc(var(--comment-depth, 1) * 18px);
+  border-left: 3px solid rgba(215, 25, 32, 0.3);
+}
+
+.comment-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.comment-body {
+  color: var(--text);
+}
+
+.comment-empty {
+  padding: 8px 4px 0;
+}
+
+.comment-composer-compact {
+  margin-top: 16px;
+  padding: 18px;
+  border-radius: 20px;
+  background: rgba(215, 25, 32, 0.06);
+}
+
 .site-footer-inner {
   padding: 22px 24px;
   border: 1px solid var(--line);
@@ -778,10 +875,17 @@ textarea {
   .site-actions .button,
   .hero-actions .button,
   .pagination-controls .button,
+  .comment-auth-actions .button,
+  .comment-composer-actions .button,
+  .comment-card-actions .button,
   .filter-chip,
   .page-chip,
   .button-full {
     width: 100%;
+  }
+
+  .comment-card-reply {
+    margin-left: 0;
   }
 
   .filter-bar .button {
